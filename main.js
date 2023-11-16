@@ -51,7 +51,8 @@ function computerChooses(){
 
 
 //start --> generera ett nummer 1-3 --> 1 = sten osv...
-startBtn.addEventListener('click', computerChooses());
+// startBtn.addEventListener('click', computerChooses());
+computerChooses();
 
 
 rockBtn.addEventListener('click', function(){

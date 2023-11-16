@@ -7,16 +7,15 @@ body {
     justify-content: center;
     align-items: center;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-image: url(./img/rock-paper-scissors.png);
+    background-repeat: repeat;
+    background-size: 10%;
     
 }
 main {
-    border: 2px solid;
     border-radius: 1rem;
     width: 40%;
-    max-width: 350px;
-    min-width: 350px;
-    min-height: 300px;
-    max-height: 450px;
+    max-width: 450px;
     padding: 1rem;
     background-color: rgb(132, 85, 132);
     color: rgb(242, 242, 102);
@@ -29,20 +28,15 @@ main {
 }
 
 .other-main {
-    border: 2px solid;
     border-radius: 1rem;
     width: 40%;
-    max-width: 350px;
-    min-width: 350px;
-    min-height: 300px;
+    max-width: 450px;
     padding: 1rem;
     background-color: rgb(132, 85, 132);
     color: rgb(242, 242, 102);
     display: flex;
     flex-direction: column;
     gap: 1rem
-    /* justify-content: center;
-    align-items: center; */
 }
 
 h1 {
@@ -96,7 +90,6 @@ button {
     background-color: rgb(132, 85, 132);
     border: 0.2rem solid rgb(242, 242, 102);
     border-radius: 0.5rem;
-    /* padding: 1rem; */
     margin: 1rem;
     color: rgb(242, 242, 102);
     font-size: 1.2rem;
@@ -108,12 +101,6 @@ button:hover {
     border-radius: 0.5rem;
     color: rgb(132, 85, 132);
 }
-/* 
-.score-board {
-    border: 0.2rem solid rgb(242, 242, 102);
-    border-radius: 1rem;
-    padding: 1rem;
-} */
 
 .score-board {
     display: flex;
@@ -147,7 +134,7 @@ h3 {
     border-radius: 0.5rem;
     background-color: rgb(242, 242, 102);
     color:rgb(132, 85, 132);
-    width: 100%;
+    width: 90%;
     text-align: center;
 }
 
@@ -155,8 +142,15 @@ h3 {
     padding: 1.5rem;
     font-size: 1.5rem;
 }
+
  @media (max-width: 830px) {
     body {
         flex-direction: column;
+        background-size: 20%;
+    }
+
+    main,
+    .other-main {
+        width: 80%;
     }
  }
