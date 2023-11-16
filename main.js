@@ -1,7 +1,7 @@
 //kontakt med alla knappar + listan
 const underTitle = document.getElementById('under-title');
 
-const startBtn = document.getElementById('start-game');
+//const startBtn = document.getElementById('start-game');
 const rockBtn = document.getElementById('rock');
 const paperBtn = document.getElementById('paper');
 const scissorBtn = document.getElementById('scissors');
