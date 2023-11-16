@@ -10,13 +10,9 @@ const resultList = document.getElementById('results-list');
 const winScore = document.getElementById('won');
 const looseScore = document.getElementById('lost');
 const tieScore = document.getElementById('tie');
-const scoreBoard = document.getElementById('score-message');
 const messageDiv = document.getElementById('message-div')
 
-const winMessage = document.createElement('h3');
-winMessage.textContent = 'YOU WIN!'
-const looseMessage = document.createElement('h3');
-looseMessage.textContent = 'YOU LOOSE!'
+const resultMessage = document.createElement('h3');
 
 const restartBtn = document.createElement('button');
 restartBtn.classList.add('restart-btn');
@@ -30,194 +26,138 @@ let wins = 0;
 let losts = 0;
 let ties = 0;
 
-function computerChooses(){
-    computerNumber = Math.floor(Math.random() * 3) + 1;
-    console.log(computerNumber);
-    underTitle.textContent = 'Computer has chosen a fighter!';
-    if(computerNumber == 1){
-        computerFighter = 'rock';
-        console.log(computerFighter);
-    }
-    if(computerNumber == 2){
-        computerFighter = 'paper';
-        console.log(computerFighter);
-    }
-    if(computerNumber == 3){
-        computerFighter = 'scissors';
-        console.log(computerFighter);
-    }
-    
-}
-
-
-//start --> generera ett nummer 1-3 --> 1 = sten osv...
-// startBtn.addEventListener('click', computerChooses());
+//ANROPAS FRÅN START
 computerChooses();
 
+//****FUNCTIONS**** */
 
-rockBtn.addEventListener('click', function(){
-    userFighter = 'rock';
+//väljer en siffra 1-3 --> tilldelas ett värde
+function computerChooses(){
+    computerNumber = Math.floor(Math.random() * 3) + 1;
+    underTitle.textContent = 'Computer has chosen a fighter!';
+    switch (computerNumber){
+        case 1:
+            computerFighter = 'Rock';
+            console.log(computerFighter);
+            break;
+        case 2:
+            computerFighter = 'Paper';
+            console.log(computerFighter);
+            break;
+        case 3:
+            computerFighter = 'Scissors';
+            console.log(computerFighter);
+            break;
+        
+    }
+}
+
+//lägger till vinst-resultat
+function winResults(){
+    wins ++;
+    winScore.textContent = `Won: ${wins}`;
     console.log(`user : ${userFighter}`);
-    if (computerFighter == 'scissors'){
-        const listElement = document.createElement('li');
-        listElement.textContent = `You chose ${userFighter} against ${computerFighter}. You won!`;
-        resultList.appendChild(listElement);
-        underTitle.textContent = 'Press the Start Button:';
+    const listElement = document.createElement('li');
+    listElement.textContent = `You won! ${userFighter} beats ${computerFighter}! `;
+    resultList.appendChild(listElement);
+}
 
-        wins ++;
-        winScore.textContent = `Won: ${wins}`;
+//lägger till förlust-resultat
+function looseResults(){
+    losts ++;
+    looseScore.textContent = `Lost: ${losts}`;
+    console.log(`user : ${userFighter}`);
+    const listElement = document.createElement('li');
+    listElement.textContent = `You lost! ${computerFighter} beats ${userFighter}! `;
+    resultList.appendChild(listElement);
+}
+//lägger till oavgjort-resultat
+function tieResults(){
+    ties ++;
+    tieScore.textContent = `Ties: ${ties}`;
+    console.log(`user : ${userFighter}`);
+    const listElement = document.createElement('li');
+    listElement.textContent = `It's a tie! You both chose ${userFighter}.`;
+    resultList.appendChild(listElement);
+}
+
+//kollar resultatet för vinst/förlust
+function checkResults(){
+    if(wins == 5){
+        resultMessage.textContent = 'YOU WIN!'
+        messageDiv.appendChild(resultMessage);
+        messageDiv.appendChild(restartBtn);
+        //disabled alla knappar
+        rockBtn.disabled = true;
+        paperBtn.disabled = true;
+        scissorBtn.disabled = true;
+    }
+
+    if(losts == 5){
+        resultMessage.textContent = 'YOU LOOSE!'
+        messageDiv.appendChild(resultMessage);
+        messageDiv.appendChild(restartBtn);
+        //disabled alla knappar
+        rockBtn.disabled = true;
+        paperBtn.disabled = true;
+        scissorBtn.disabled = true;
+    }
+}
+
+//****BUTTONS**** */
+
+//varje knapp jämför spelarens och datorns val --> uppdaterar resultatet av varje runda
+rockBtn.addEventListener('click', function(){
+    userFighter = 'Rock';
+
+    if (computerFighter == 'Scissors'){
+        winResults();
 
     } else if (userFighter == computerFighter){
-        const listElement = document.createElement('li');
-        listElement.textContent = `You chose ${userFighter} against ${computerFighter}. It's a tie!`;
-        resultList.appendChild(listElement);
-        underTitle.textContent = 'Press the Start Button:';
-
-        ties ++;
-        tieScore.textContent = `Ties: ${ties}`;
+        tieResults();
     }
     else {
-        const listElement = document.createElement('li');
-        listElement.textContent = `You chose ${userFighter} against ${computerFighter}. You lost!`;
-        resultList.appendChild(listElement);
-        underTitle.textContent = 'Press the Start Button:';
+        looseResults();
+    }
 
-        losts ++;
-        looseScore.textContent = `Lost: ${losts}`;
-    }
-    if(wins == 5){
-        console.log('you win');
-        messageDiv.appendChild(winMessage);
-        messageDiv.appendChild(restartBtn);
-        //disabled alla knappar
-        rockBtn.disabled = true;
-        paperBtn.disabled = true;
-        scissorBtn.disabled = true;
-    }
-    
-    if(losts == 5){
-        messageDiv.appendChild(looseMessage);
-        messageDiv.appendChild(restartBtn);
-        //disabled alla knappar
-        rockBtn.disabled = true;
-        paperBtn.disabled = true;
-        scissorBtn.disabled = true;
-    }
+    checkResults();
     computerChooses();
 })
 
 paperBtn.addEventListener('click', function(){
-    userFighter = 'paper';
-    console.log(`user : ${userFighter}`);
-    if (computerFighter == 'rock'){
-        const listElement = document.createElement('li');
-        listElement.textContent = `You chose ${userFighter} against ${computerFighter}. You won!`;
-        resultList.appendChild(listElement);
-        underTitle.textContent = 'Press the Start Button:';
+    userFighter = 'Paper';
 
-        wins ++;
-        winScore.textContent = `Won: ${wins}`;
+    if (computerFighter == 'Rock'){
+        winResults();
     } else if (userFighter == computerFighter){
-        const listElement = document.createElement('li');
-        listElement.textContent = `You chose ${userFighter} against ${computerFighter}. It's a tie!`;
-        resultList.appendChild(listElement);
-        underTitle.textContent = 'Press the Start Button:';
-
-        ties ++;
-        tieScore.textContent = `Ties: ${ties}`;
+        tieResults();
     }
     else {
-        const listElement = document.createElement('li');
-        listElement.textContent = `You chose ${userFighter} against ${computerFighter}. You lost!`;
-        resultList.appendChild(listElement);
-        underTitle.textContent = 'Press the Start Button:';
+        looseResults();
+    }
 
-        losts ++;
-        looseScore.textContent = `Lost: ${losts}`;
-    }
-    if(wins == 5){
-        console.log('you win');
-        messageDiv.appendChild(winMessage);
-        messageDiv.appendChild(restartBtn);
-        //disabled alla knappar
-        rockBtn.disabled = true;
-        paperBtn.disabled = true;
-        scissorBtn.disabled = true;
-    }
-    
-    if(losts == 5){
-        messageDiv.appendChild(looseMessage);
-        messageDiv.appendChild(restartBtn);
-        //disabled alla knappar
-        rockBtn.disabled = true;
-        paperBtn.disabled = true;
-        scissorBtn.disabled = true;
-    }
+    checkResults();
     computerChooses();
 })
 
 scissorBtn.addEventListener('click', function(){
-    userFighter = 'scissors';
-    console.log(`user : ${userFighter}`);
-    if (computerFighter == 'paper'){
-        const listElement = document.createElement('li');
-        listElement.textContent = `You chose ${userFighter} against ${computerFighter}. You won!`;
-        resultList.appendChild(listElement);
-        underTitle.textContent = 'Press the Start Button:';
+    userFighter = 'Scissors';
 
-        wins ++;
-        winScore.textContent = `Won: ${wins}`;
+    if (computerFighter == 'Paper'){
+        winResults();
     } else if (userFighter == computerFighter){
-        const listElement = document.createElement('li');
-        listElement.textContent = `You chose ${userFighter} against ${computerFighter}. It's a tie!`;
-        resultList.appendChild(listElement);
-        underTitle.textContent = 'Press the Start Button:';
-
-        ties ++;
-        tieScore.textContent = `Ties: ${ties}`;
+        tieResults();
     }
     else {
-        const listElement = document.createElement('li');
-        listElement.textContent = `You chose ${userFighter} against ${computerFighter}. You lost!`;
-        resultList.appendChild(listElement);
-        underTitle.textContent = 'Press the Start Button:';
+        looseResults();
+    }
 
-        losts ++;
-        looseScore.textContent = `Lost: ${losts}`;
-    }
-    if(wins == 5){
-        console.log('you win');
-        messageDiv.appendChild(winMessage);
-        messageDiv.appendChild(restartBtn);
-        //disabled alla knappar
-        rockBtn.disabled = true;
-        paperBtn.disabled = true;
-        scissorBtn.disabled = true;
-    }
-    
-    if(losts == 5){
-        messageDiv.appendChild(looseMessage);
-        messageDiv.appendChild(restartBtn);
-        //disabled alla knappar
-        rockBtn.disabled = true;
-        paperBtn.disabled = true;
-        scissorBtn.disabled = true;
-    }
+    checkResults();
     computerChooses();
 })
 
+
+//laddar om sidan --> startar om spelet
 restartBtn.addEventListener('click', function(){
-    // resultList.textContent = '';
-    // messageDiv.textContent = '';
-    // wins = 0;
-    // ties = 0;
-    // losts = 0;
-    // winScore.textContent = 'Won: ';
-    // tieScore.textContent = 'Ties: ';
-    // looseScore.textContent = 'Lost: ';
-    // //gör knapparna online igen
-    // rockBtn.disabled = false;
-    // paperBtn.disabled = false;
-    // scissorBtn.disabled = false;
     location.reload();
 })
