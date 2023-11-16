@@ -56,13 +56,12 @@ h2{
 }
 
 p {
-    margin-right: 1rem;
-    font-size: 1.5rem;
+    margin-right: 1.5rem;
+    font-size: 1.4rem;
 }
 
-li,
-label{
-    font-size: 1rem;
+li {
+    font-size: 1.1rem;
 }
 
 .fighter-div {
@@ -95,13 +94,9 @@ button:hover {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    border: 0.2rem solid rgb(242, 242, 102);
-    border-radius: 1rem;
 }
 .results-div{
     width: 100%;
-    border: 0.2rem solid rgb(242, 242, 102);
-    border-radius: 1rem;
 }
 .score-div{
     display: flex;
