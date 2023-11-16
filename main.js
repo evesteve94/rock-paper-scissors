@@ -207,16 +207,17 @@ scissorBtn.addEventListener('click', function(){
 })
 
 restartBtn.addEventListener('click', function(){
-    resultList.textContent = '';
-    messageDiv.textContent = '';
-    wins = 0;
-    ties = 0;
-    losts = 0;
-    winScore.textContent = 'Won: ';
-    tieScore.textContent = 'Ties: ';
-    looseScore.textContent = 'Lost: ';
-    //gör knapparna online igen
-    rockBtn.disabled = false;
-    paperBtn.disabled = false;
-    scissorBtn.disabled = false;
+    // resultList.textContent = '';
+    // messageDiv.textContent = '';
+    // wins = 0;
+    // ties = 0;
+    // losts = 0;
+    // winScore.textContent = 'Won: ';
+    // tieScore.textContent = 'Ties: ';
+    // looseScore.textContent = 'Lost: ';
+    // //gör knapparna online igen
+    // rockBtn.disabled = false;
+    // paperBtn.disabled = false;
+    // scissorBtn.disabled = false;
+    location.reload();
 })
